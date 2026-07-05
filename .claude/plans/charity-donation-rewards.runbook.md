@@ -1,10 +1,13 @@
 # Loop Runbook: Charity Donation & Rewards SPA
 
 **Pattern:** continuous-pr (per-phase gated commit)
-**Mode:** safe
+**Mode:** fast (loop-start override 2026-07-05)
 **Model tier:** Opus 4.8 (1M context)
-**Branch:** `feat/charity-donation-rewards` (from `main`)
-**Started:** 2026-07-04
+**Branch:** `main` (loop-start override — commit phases directly, no feature branch)
+**Started:** 2026-07-04 · **Loop resumed:** 2026-07-05
+
+> Fast-mode gate: run `npm run type-check` (0 errors) before each phase commit to keep
+> `main` green; defer the `: any` / `as any` grep to the final phase.
 
 ## Objective
 Feature-Sliced Vue 3 + strict-TS + Tailwind SPA: donation slider ($10–$500, 2.5% fee
@@ -27,6 +30,10 @@ Final gate additionally: `npm run build` (exit 0) + manual `npm run dev` behavio
 
 ## Stop condition
 All phases committed AND `type-check` + `build` green AND manual behavioral flow passes.
+
+> **✅ STOP CONDITION MET (2026-07-05).** Phases 0–6 committed on `main` (HEAD `07bd2ff`).
+> Final gate: `type-check` exit 0, `build` exit 0, any-grep clean, manual walkthrough passed
+> (auth interception + pending auto-commit, wheel reward → ledger, `v-if` teardown, zero console errors).
 
 ## Phases (each = one commit unit)
 | # | Phase | Gate |
