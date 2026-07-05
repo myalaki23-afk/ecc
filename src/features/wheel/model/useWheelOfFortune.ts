@@ -1,7 +1,7 @@
 /**
  * requestAnimationFrame-driven wheel spin.
  *
- * Teardown: any in-flight animation frame is cancelled on unmount, so removing
+ * Teardown: an in-flight animation frame is cancelled on unmount, so removing
  * the wheel (e.g. via `v-if`) leaves no dangling rAF callback or listener.
  */
 import { onUnmounted, readonly, ref } from 'vue'
